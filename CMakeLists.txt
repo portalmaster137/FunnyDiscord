@@ -25,4 +25,4 @@ add_executable(HelloWorld ${SOURCES})
 
 ## We will link the libraries to our project
 
-target_link_libraries(HelloWorld dotenv DPP)
+target_link_libraries(HelloWorld PRIVATE dpp dotenv)

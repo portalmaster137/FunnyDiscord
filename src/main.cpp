@@ -1,5 +1,16 @@
 #include "dotenv.h"
 #include <dpp/dpp.h>
+#include <csignal>
+
+dpp::cluster* bot_ptr = nullptr; // global pointer to bot
+
+void signalHandler(int signum) {
+    if (bot_ptr) {
+        std::cout << "[SIGTERM RECIEVED]" << std::endl;
+        bot_ptr->shutdown();
+    }
+    exit(signum);
+}
 
 int main() {
     
@@ -13,10 +24,11 @@ int main() {
     }
 
     dpp::cluster bot(BOT_TOKEN);
+    bot_ptr = &bot; // assign address of bot to global pointer
 
     bot.on_log(dpp::utility::cout_logger());
 
-    bot.on_slashcommand([](const dpp::slashcommand_t& event) {
+    bot.on_slashcommand([&bot](const dpp::slashcommand_t& event) {
         if (event.command.get_command_name() == "ping") {
             event.reply("Pong!");
         }
@@ -28,6 +40,8 @@ int main() {
         }
     });
  
+    std::signal(SIGINT, signalHandler);
+
     bot.start(dpp::st_wait);
 
 }
