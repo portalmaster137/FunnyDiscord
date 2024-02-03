@@ -1,0 +1,6 @@
+[submodule "include/dotenv-cpp"]
+	path = include/dotenv-cpp
+	url = https://github.com/laserpants/dotenv-cpp.git
+[submodule "include/DPP"]
+	path = include/DPP
+	url = https://github.com/brainboxdotcc/DPP.git
