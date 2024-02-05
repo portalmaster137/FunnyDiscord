@@ -1,6 +1,6 @@
-[submodule "include/dotenv-cpp"]
+[submodule "external/dotenv-cppp"]
 	path = external/dotenv-cpp
 	url = https://github.com/laserpants/dotenv-cpp.git
-[submodule "include/DPP"]
+[submodule "external/DPP"]
 	path = external/DPP
 	url = https://github.com/brainboxdotcc/DPP.git
